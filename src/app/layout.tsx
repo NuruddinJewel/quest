@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
+import { ToastContainer } from "react-toastify";
 // import Footer from "@/components/layout/Footer";
 
 const geistSans = Geist({
@@ -40,6 +41,17 @@ export default function RootLayout({
 
         {/* Footer */}
         {/* <Footer /> */}
+        {/* <ToastContainer position="top-right" autoClose={3000} /> */}
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </body>
     </html>
   );

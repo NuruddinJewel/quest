@@ -6,6 +6,8 @@ import { authClient } from "@/lib/auth-client";
 // import { useCart } from "@/hooks/useCart"; // assuming cart hook handles items length
 import { HiOutlineSearch, HiOutlineShoppingBag, HiOutlineBell } from "react-icons/hi";
 import { IoGameControllerOutline } from "react-icons/io5";
+import { toast } from "react-toastify";
+import React from "react";
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -18,17 +20,29 @@ export default function Navbar() {
     //     });
     // };
 
+
     const handleSignOut = async () => {
-        await authClient.signOut({
-            fetchOptions: {
-                query: {
-                    callbackURL: "/login",
+        try {
+            await authClient.signOut({
+                fetchOptions: {
+                    onSuccess: () => {
+                        toast.success("Successfully logged out. Bye! 👋", {
+                            theme: "dark",
+                            icon: <span>🚪</span>
+                        });
+                    },
+                    onError: () => {
+                        toast.error("Logout failed. Try again.", { theme: "dark" });
+                    },
+                    query: {
+                        callbackURL: "/login",
+                    },
                 },
-            },
-        });
+            });
+        } catch (error) {
+            console.error(error);
+        }
     };
-
-
     const navLinks = [
         { name: "Home", href: "/" },
         { name: "Catalog", href: "/catalog" },

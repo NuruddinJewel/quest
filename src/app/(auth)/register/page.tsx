@@ -5,6 +5,7 @@ import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
 
 export default function RegisterPage() {
     const [name, setName] = useState("");
@@ -22,21 +23,47 @@ export default function RegisterPage() {
                 email,
                 password,
                 name,
-                callbackURL: "/dashboard",
             }, {
                 onRequest: () => setLoading(true),
                 onSuccess: () => {
-                    toast.success("Account created successfully!");
+                    toast.success("Account created successfully! 🎉 Ready to explore.", { theme: "dark" });
                     router.push("/dashboard");
                 },
                 onError: (ctx) => {
-                    toast.error(ctx.error.message || "Something went wrong!");
+                    toast.error(ctx.error.message || "Something went wrong!", { theme: "dark" });
+                },
+                fetchOptions: {
+                    query: {
+                        callbackURL: "/dashboard"
+                    }
                 }
             });
         } catch (err) {
-            toast.error("An unexpected error occurred.");
+            toast.error("An unexpected error occurred.", { theme: "dark" });
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleGoogleSignIn = async () => {
+        try {
+            await authClient.signIn.social({
+                provider: "google",
+            }, {
+                onSuccess: () => {
+                    toast.success("Connecting via Google...", { theme: "dark" });
+                },
+                onError: (ctx) => {
+                    toast.error(ctx.error.message || "Google auth failed!", { theme: "dark" });
+                },
+                fetchOptions: {
+                    query: {
+                        callbackURL: "/dashboard"
+                    }
+                }
+            });
+        } catch (err) {
+            toast.error("Google authentication failed.", { theme: "dark" });
         }
     };
 
@@ -49,6 +76,18 @@ export default function RegisterPage() {
                     Create <span className="text-crimson">Oasis</span> Account
                 </h2>
                 <p className="text-fog text-sm mb-6">Join the ultimate retro & modern gaming haven.</p>
+
+                {/* Google Social SignUp */}
+                <button
+                    type="button"
+                    onClick={handleGoogleSignIn}
+                    className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-obsidian text-ivory font-semibold rounded-lg border border-gray-800 hover:bg-gray-900 transition-all mb-6 cursor-pointer"
+                >
+                    <FcGoogle className="text-xl" />
+                    <span>Sign up with Google</span>
+                </button>
+
+                <div className="divider text-xs text-gray-600 uppercase tracking-wider mb-6">or fill details</div>
 
                 <form onSubmit={handleRegister} className="space-y-4">
                     <div>
@@ -90,7 +129,7 @@ export default function RegisterPage() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full py-3.5 mt-2 bg-crimson text-ivory font-bold rounded-lg hover:bg-opacity-90 transition-all shadow-lg shadow-crimson/20 disabled:opacity-50"
+                        className="w-full py-3.5 mt-2 bg-crimson text-ivory font-bold rounded-lg hover:bg-opacity-90 transition-all shadow-lg shadow-crimson/20 disabled:opacity-50 cursor-pointer"
                     >
                         {loading ? "Creating Account..." : "Sign Up"}
                     </button>

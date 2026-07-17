@@ -1,17 +1,23 @@
 import { getGames } from "@/lib/api";
-import Image from "next/image";
 import Link from "next/link";
 import { HiLightningBolt } from "react-icons/hi";
+import GameCard from "@/components/games/GameCard";
+import StatsTracker from "@/components/home/StatsTracker";
+import Testimonials from "@/components/home/Testimonials";
+import FAQSection from "@/components/home/FAQSection";
+import { GameType } from "@/types/game";
 
 export default async function Home() {
-  // Dynamic Data from backend
-  const popularGames = await getGames({ popular: true });
-  console.log("Fetched Games from Backend:", popularGames)
+  // Data Fetch from backend
+  const allGames = await getGames({ popular: true });
+
+  //  Game data
+  const popularGames = allGames.slice(0, 4);
 
   return (
     <div className="w-full bg-obsidian text-ivory min-h-screen">
 
-      {/*  Hero Section */}
+      {/* Hero Section */}
       <div className="w-full flex flex-col items-center justify-center relative overflow-hidden py-20 px-6 sm:px-16 border-b border-gray-950">
         <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-cyan/5 blur-[120px] pointer-events-none" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] rounded-full bg-crimson/5 blur-[120px] pointer-events-none" />
@@ -39,57 +45,36 @@ export default async function Home() {
               Explore PS5 titles
             </Link>
           </div>
-
-          <div className="flex flex-wrap gap-3 pt-6">
-            <span className="px-4 py-1.5 bg-cyan text-obsidian text-xs font-black rounded uppercase tracking-wider">PS5</span>
-            <span className="px-4 py-1.5 bg-gold text-obsidian text-xs font-black rounded uppercase tracking-wider">Xbox Series X</span>
-            <span className="px-4 py-1.5 bg-crimson text-ivory text-xs font-black rounded uppercase tracking-wider">PC premium</span>
-          </div>
         </div>
       </div>
 
-      {/* Dynamic Game Section (MongoDB Data) */}
+      {/* Dynamic Game Section */}
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <h2 className="text-3xl font-extrabold mb-2 tracking-tight">
-          POPULAR <span className="text-cyan">GAMES</span> 🎮
-        </h2>
-        <p className="text-fog mb-8 text-sm">Top trending premium gaming CDs currently in our vault.</p>
+        <div className="flex justify-between items-end mb-8">
+          <div>
+            <h2 className="text-3xl font-extrabold tracking-tight">
+              POPULAR <span className="text-cyan">GAMES</span> 🎮
+            </h2>
+            <p className="text-fog text-sm mt-1">Top trending premium gaming CDs currently in our vault.</p>
+          </div>
+          <Link href="/catalog" className="text-cyan text-sm font-bold hover:underline">
+            View All Games &rarr;
+          </Link>
+        </div>
 
-        {/* Game Grid */}
+        {/* Game Grid - Render limited 4 cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {popularGames.map((game) => (
-            <div key={game._id} className="bg-carbon border border-gray-800 rounded-xl overflow-hidden shadow-xl hover:border-cyan/50 transition-all flex flex-col group">
-              {/* Game Image */}
-              {/* <div className="h-52 bg-gray-900 overflow-hidden relative">
-                <img
-                  src={game.image}
-                  alt={game.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div> */}
-              <div className="h-52 bg-gray-900 overflow-hidden relative">
-                <Image
-                  src={game.image}
-                  alt={game.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              {/* Game Details */}
-              <div className="flex flex-wrap gap-1 mb-4">
-                {game.platforms.map((p: string) => (
-                  <span key={p} className="text-[10px] bg-obsidian text-fog px-2 py-0.5 rounded border border-gray-800 font-medium">
-                    {p}
-                  </span>
-                ))}
-              </div>
-            </div>
+          {popularGames.map((game: GameType) => (
+            <GameCard key={game._id} game={game} />
           ))}
         </div>
       </div>
 
+      {/* Additional Sections matching previous layout */}
+      <StatsTracker />
+      <Testimonials />
+      <FAQSection />
+
     </div>
   );
 }
-

@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import { ToastContainer } from "react-toastify";
-// import Footer from "@/components/layout/Footer";
+import Footer from "@/components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-display", // map to theme display font
@@ -40,7 +40,7 @@ export default function RootLayout({
         </main>
 
         {/* Footer */}
-        {/* <Footer /> */}
+        <Footer />
         {/* <ToastContainer position="top-right" autoClose={3000} /> */}
         <ToastContainer
           position="top-right"

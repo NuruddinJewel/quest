@@ -163,31 +163,28 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation"; // 🆕 useSearchParams আনা হলো
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { HiOutlineSearch } from "react-icons/hi";
 import { IoGameControllerOutline } from "react-icons/io5";
 import { toast } from "react-toastify";
-import React, { useState, useEffect, useTransition } from "react"; // 🆕 useEffect ও useTransition আনা হলো
+import React, { useState, useEffect, useTransition } from "react";
 
 export default function Navbar() {
     const pathname = usePathname();
     const router = useRouter();
-    const searchParams = useSearchParams(); // 🆕 বর্তমান ইউআরএল এর প্যারামস রিড করার জন্য
-    const [isPendingTransition, startTransition] = useTransition(); // 🆕 টাইপিং ল্যাগ দূর করার জন্য transition
+    const searchParams = useSearchParams();
+    const [isPendingTransition, startTransition] = useTransition();
     const { data: session, isPending } = authClient.useSession();
 
     const [showSearch, setShowSearch] = useState(false);
 
-    // 🆕 ইউআরএল এ অলরেডি কোনো সার্চ থাকলে সেটাকে ডিফল্ট ভ্যালু হিসেবে রাখবে
     const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
 
-    // 🆕 ইউজার যখনই টাইপ করবে, এই ফাংশনটি রান হবে
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setSearchQuery(value);
 
-        // ইউজার যদি ক্যাটালগ পেজে না থাকে, তবে টাইপ শুরু করলেই ক্যাটালগ পেজে নিয়ে যাবে
         const targetPath = pathname === "/catalog" ? "/catalog" : "/catalog";
 
         startTransition(() => {
@@ -195,10 +192,9 @@ export default function Navbar() {
             if (value.trim()) {
                 params.set("search", value);
             } else {
-                params.delete("search"); // খালি করে দিলে সার্চ প্যারাম মুছে যাবে
+                params.delete("search");
             }
 
-            // ইউআরএল আপডেট করা হচ্ছে (টাইপ করার সাথে সাথে)
             router.push(`${targetPath}?${params.toString()}`);
         });
     };
@@ -263,20 +259,20 @@ export default function Navbar() {
             {/* Right Side Icons & Auth State */}
             <div className="flex items-center gap-4 sm:gap-6">
 
-                {/* 🆕 লাইভ সার্চ এরিয়া */}
+                {/* Live Search Area */}
                 {showSearch ? (
                     <div className="flex items-center gap-2 bg-carbon border border-gray-800 px-3 py-1.5 rounded-lg">
                         <input
                             type="text"
                             placeholder="Type to search..."
                             value={searchQuery}
-                            onChange={handleInputChange} // 🆕 প্রতি কি-স্ট্রোকে ইউআরএল চেইঞ্জ হবে
+                            onChange={handleInputChange}
                             className="bg-transparent text-sm text-ivory outline-none w-40 sm:w-60 placeholder-gray-500"
                             autoFocus
                         />
                         <div className="text-fog text-lg">
                             {isPendingTransition ? (
-                                <span className="loading loading-spinner loading-xs text-cyan"></span> // DaisyUI স্পিনার (যদি লোডিং ফিল হয়)
+                                <span className="loading loading-spinner loading-xs text-cyan"></span> // DaisyUI 
                             ) : (
                                 <HiOutlineSearch />
                             )}
@@ -286,7 +282,7 @@ export default function Navbar() {
                             onClick={() => {
                                 setShowSearch(false);
                                 setSearchQuery("");
-                                router.push("/catalog"); // সার্চ বক্স বন্ধ করলে ফিল্টার রিসেট হবে
+                                router.push("/catalog");
                             }}
                             className="text-gray-500 hover:text-crimson text-sm pl-1 border-l border-gray-850"
                         >

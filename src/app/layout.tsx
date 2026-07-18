@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import { ToastContainer } from "react-toastify";
 import Footer from "@/components/layout/Footer";
 import ChatWidget from "@/components/ai/ChatWidget";
+import { Suspense } from "react";
 
 
 
@@ -35,7 +36,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-obsidian text-ivory selection:bg-cyan selection:text-obsidian">
         {/* Navbar */}
-        <Navbar />
+        <Suspense fallback={<div className="h-20 bg-obsidian" />}>
+          <Navbar />
+        </Suspense>
 
         {/* Main Content Area */}
         <main className="flex-1 flex flex-col w-full">

@@ -6,6 +6,7 @@ import StatsTracker from "@/components/home/StatsTracker";
 import Testimonials from "@/components/home/Testimonials";
 import FAQSection from "@/components/home/FAQSection";
 import { GameType } from "@/types/game";
+import MotionGrid from "@/components/games/MotionGrid";
 
 export default async function Home() {
   // Data Fetch from backend
@@ -63,11 +64,12 @@ export default async function Home() {
         </div>
 
         {/* Game Grid - Render limited 4 cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {popularGames.map((game: GameType) => (
             <GameCard key={game._id} game={game} />
           ))}
-        </div>
+        </div> */}
+        <MotionGrid popularGames={popularGames} />
       </div>
 
       {/* Additional Sections matching previous layout */}

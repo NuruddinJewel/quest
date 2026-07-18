@@ -47,7 +47,7 @@ export default function Navbar() {
         { name: "Home", href: "/" },
         { name: "Catalog", href: "/catalog" },
         { name: "Top sellers", href: "/catalog?filter=bestsellers" },
-        { name: "Insights", href: "/admin/analytics" }, // Adjust based on requirement
+        // { name: "Insights", href: "/admin/analytics" }, // Adjust based on requirement
     ];
 
     return (

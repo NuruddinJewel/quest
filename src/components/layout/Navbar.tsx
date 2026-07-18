@@ -229,7 +229,7 @@ export default function Navbar() {
     const navLinks = [
         { name: "Home", href: "/" },
         { name: "Catalog", href: "/catalog" },
-        { name: "Top sellers", href: "/catalog?filter=bestsellers" },
+        { name: "Top Games", href: "/catalog?filter=bestsellers" },
     ];
 
     return (

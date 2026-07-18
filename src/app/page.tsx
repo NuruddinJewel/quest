@@ -128,11 +128,11 @@ export default async function Home() {
           </p>
 
           <div className="flex flex-wrap gap-4 pt-4">
-            <Link href="/catalog" className="px-8 py-3.5 bg-cyan text-obsidian font-bold rounded-lg hover:bg-cyan-dark transition-all duration-300 shadow-lg shadow-cyan/20 transform hover:-translate-y-0.5">
-              Shop bestsellers
+            <Link href="/catalog?filter=bestsellers" className="px-8 py-3.5 bg-cyan text-obsidian font-bold rounded-lg hover:bg-cyan-dark transition-all duration-300 shadow-lg shadow-cyan/20 transform hover:-translate-y-0.5">
+              Browse Top Games
             </Link>
             <Link href="/catalog?platform=ps5" className="px-8 py-3.5 border-2 border-cyan text-cyan font-bold rounded-lg hover:bg-cyan/10 transition-all duration-300 transform hover:-translate-y-0.5">
-              Explore PS5 titles
+              Explore PlayStation Games
             </Link>
           </div>
         </div>

@@ -36,3 +36,34 @@ export async function getGameById(id: string): Promise<GameType | null> {
         return null;
     }
 }
+// 🛒 Game Order Place function
+export async function placeOrder(
+    gameId: string,
+    orderData: {
+        buyerId: string;
+        buyerName: string;
+        buyerEmail: string;
+        quantity: number;
+    }
+) {
+    try {
+        const res = await fetch(`${BACKEND_URL}/api/games/${gameId}/buy`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(orderData),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            throw new Error(data.error || "Failed to place order");
+        }
+
+        return data;
+    } catch (error: unknown) {
+        console.error("Order placement error:", error);
+        throw error;
+    }
+}

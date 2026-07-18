@@ -252,7 +252,9 @@ import { Order } from "@/types/order";
 import { GameType } from "@/types/game";
 import { BuyerUser } from "@/types/user";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+// const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const BACKEND_URL: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
+// console.log("Backend URL", BACKEND_URL)
 
 //  Overview stats
 export async function getAdminStats(): Promise<AdminStats> {

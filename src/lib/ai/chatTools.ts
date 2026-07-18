@@ -83,7 +83,9 @@ import { FunctionDeclaration, Type } from "@google/genai";
 import { GameType } from "@/types/game";
 import { Order } from "@/types/order";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+// const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const BACKEND_URL: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
+console.log("Backend URL", BACKEND_URL)
 
 // Tools
 export const chatToolDeclarations: FunctionDeclaration[] = [

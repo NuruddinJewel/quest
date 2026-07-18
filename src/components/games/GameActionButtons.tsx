@@ -291,7 +291,7 @@ export default function GameActionButtons({ game }: ActionButtonsProps) {
         setErrorMessage(null);
 
         try {
-            // 🚀 রিয়েল ব্যাকএন্ড API কল
+
             await placeOrder(game._id, {
                 buyerId: session.user.id,
                 buyerName: session.user.name || "Gamer Vault",
@@ -336,14 +336,14 @@ export default function GameActionButtons({ game }: ActionButtonsProps) {
             {/* Action Button Group*/}
             <div className="flex flex-col sm:flex-row gap-4">
                 {/* Add to Cart */}
-                <button
+                {/* <button
                     disabled={outOfStock || isSubmitting || isPending}
                     onClick={() => alert(`${game.title} added to cart!`)}
                     className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-obsidian border border-cyan text-cyan font-bold rounded-xl hover:bg-cyan/10 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                     <HiOutlineShoppingBag className="text-lg" />
                     <span>Add to Cart</span>
-                </button>
+                </button> */}
 
                 {/* Click Buy Now */}
                 <button

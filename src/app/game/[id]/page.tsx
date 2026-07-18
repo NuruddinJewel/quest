@@ -150,7 +150,7 @@ export default async function GameDetailPage({ params }: GameDetailProps) {
                         </div>
 
                         <p className="text-fog mt-6 leading-relaxed">
-                            Experience this premium title on your favorite platform. Physical CD delivery includes original box art, game manual, and verified disc keys ready for activation.
+                            Experience this premium Game on your favorite platform. Physical CD delivery includes original box art, game manual, and verified disc keys ready for activation.
                         </p>
 
                         {/* Platforms Info */}

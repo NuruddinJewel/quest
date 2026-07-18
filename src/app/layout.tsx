@@ -4,6 +4,9 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import { ToastContainer } from "react-toastify";
 import Footer from "@/components/layout/Footer";
+import ChatWidget from "@/components/ai/ChatWidget";
+
+
 
 const geistSans = Geist({
   variable: "--font-display", // map to theme display font
@@ -42,6 +45,7 @@ export default function RootLayout({
         {/* Footer */}
         <Footer />
         {/* <ToastContainer position="top-right" autoClose={3000} /> */}
+        <ChatWidget />
         <ToastContainer
           position="top-right"
           autoClose={3000}

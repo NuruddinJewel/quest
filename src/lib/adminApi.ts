@@ -5,7 +5,7 @@
 
 // // const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000";
 
-// // // 📊 Overview stats
+// // //  Overview stats
 // // export async function getAdminStats(): Promise<AdminStats> {
 // //     try {
 // //         const res = await fetch(`${BACKEND_URL}/api/admin/stats`, { cache: "no-store" });
@@ -19,7 +19,7 @@
 // //     }
 // // }
 
-// // // 📦 Pending orders queue (backend now supports ?status= filter)
+// // //  Pending orders queue (backend now supports ?status= filter)
 // // export async function getPendingOrders(): Promise<Order[]> {
 // //     try {
 // //         const res = await fetch(`${BACKEND_URL}/api/orders?status=pending`, { cache: "no-store" });
@@ -33,7 +33,7 @@
 // //     }
 // // }
 
-// // // ✅ / ❌ Update order status — backend uses ONE endpoint for both approve & reject
+// // //  Update order status — backend uses ONE endpoint for both approve & reject
 // // export async function updateOrderStatus(
 // //     orderId: string,
 // //     status: "approved" | "rejected"
@@ -54,7 +54,7 @@
 // //     }
 // // }
 
-// // // 🎮 Add a new game to the vault
+// // // Add a new game to the vault
 // // export async function addGame(payload: Omit<GameType, "_id">): Promise<GameType> {
 // //     try {
 // //         const res = await fetch(`${BACKEND_URL}/api/games`, {
@@ -72,7 +72,7 @@
 // //     }
 // // }
 
-// // // ✏️ Update an existing game (price, stock, etc.)
+// // //  Update an existing game (price, stock, etc.)
 // // export async function updateGame(id: string, payload: Partial<GameType>): Promise<GameType> {
 // //     try {
 // //         const res = await fetch(`${BACKEND_URL}/api/games/${id}`, {
@@ -90,7 +90,7 @@
 // //     }
 // // }
 
-// // // 🗑️ Delete a game
+// // //  Delete a game
 // // export async function deleteGame(id: string): Promise<void> {
 // //     try {
 // //         const res = await fetch(`${BACKEND_URL}/api/games/${id}`, { method: "DELETE" });
@@ -105,7 +105,7 @@
 // //     }
 // // }
 
-// // // 👥 Buyer / customer directory
+// // //  Buyer / customer directory
 // // export async function getBuyers(): Promise<BuyerUser[]> {
 // //     try {
 // //         const res = await fetch(`${BACKEND_URL}/api/admin/buyers`, { cache: "no-store" });
@@ -127,7 +127,7 @@
 
 // const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000";
 
-// // 📊 Overview stats
+// //  Overview stats
 // export async function getAdminStats(): Promise<AdminStats> {
 //     try {
 //         const res = await fetch(`${BACKEND_URL}/api/admin/stats`, { cache: "no-store" });
@@ -141,7 +141,7 @@
 //     }
 // }
 
-// // 📦 Pending orders queue (backend now supports ?status= filter)
+// //  Pending orders queue (backend now supports ?status= filter)
 // export async function getPendingOrders(): Promise<Order[]> {
 //     try {
 //         const res = await fetch(`${BACKEND_URL}/api/orders?status=pending`, { cache: "no-store" });
@@ -155,7 +155,7 @@
 //     }
 // }
 
-// // ✅ / ❌ Update order status — backend uses ONE endpoint for both approve & reject
+// //  Update order status — backend uses ONE endpoint for both approve & reject
 // export async function updateOrderStatus(
 //     orderId: string,
 //     status: "approved" | "rejected"
@@ -216,7 +216,7 @@
 //     }
 // }
 
-// // 🗑️ Delete a game
+// //  Delete a game
 // export async function deleteGame(id: string): Promise<void> {
 //     try {
 //         const res = await fetch(`${BACKEND_URL}/api/games/${id}`, { method: "DELETE" });
@@ -231,7 +231,7 @@
 //     }
 // }
 
-// // 👥 Buyer / customer directory
+// //  Buyer / customer directory
 // export async function getBuyers(): Promise<BuyerUser[]> {
 //     try {
 //         const res = await fetch(`${BACKEND_URL}/api/admin/buyers`, { cache: "no-store" });
@@ -252,14 +252,14 @@ import { Order } from "@/types/order";
 import { GameType } from "@/types/game";
 import { BuyerUser } from "@/types/user";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000";
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
-// 📊 Overview stats
+//  Overview stats
 export async function getAdminStats(): Promise<AdminStats> {
     try {
         const res = await fetch(`${BACKEND_URL}/api/admin/stats`, { cache: "no-store" });
 
-        // 🆕 আগে চেক করুন রেসপন্স ঠিক আছে কিনা, তারপর JSON পার্স করুন
+        // Json response
         if (!res.ok) {
             const data = await res.json().catch(() => ({}));
             throw new Error(data.error || "Failed to fetch stats");
@@ -273,7 +273,7 @@ export async function getAdminStats(): Promise<AdminStats> {
     }
 }
 
-// 📦 Pending orders queue
+//  Pending orders queue
 export async function getPendingOrders(): Promise<Order[]> {
     try {
         const res = await fetch(`${BACKEND_URL}/api/orders?status=pending`, { cache: "no-store" });
@@ -291,7 +291,7 @@ export async function getPendingOrders(): Promise<Order[]> {
     }
 }
 
-// ✅ / ❌ Update order status
+//  Update order status
 export async function updateOrderStatus(
     orderId: string,
     status: "approved" | "rejected"
@@ -314,7 +314,7 @@ export async function updateOrderStatus(
     }
 }
 
-// 🎮 Add a new game to the vault
+//  Add a new game to the vault
 export async function addGame(payload: Omit<GameType, "_id">): Promise<GameType> {
     try {
         const res = await fetch(`${BACKEND_URL}/api/games`, {
@@ -334,7 +334,7 @@ export async function addGame(payload: Omit<GameType, "_id">): Promise<GameType>
     }
 }
 
-// ✏️ Update an existing game
+//  Update an existing game
 export async function updateGame(id: string, payload: Partial<GameType>): Promise<{ message: string }> {
     try {
         const res = await fetch(`${BACKEND_URL}/api/games/${id}`, {
@@ -354,7 +354,7 @@ export async function updateGame(id: string, payload: Partial<GameType>): Promis
     }
 }
 
-// 🗑️ Delete a game
+//  Delete a game
 export async function deleteGame(id: string): Promise<void> {
     try {
         const res = await fetch(`${BACKEND_URL}/api/games/${id}`, { method: "DELETE" });
@@ -369,7 +369,7 @@ export async function deleteGame(id: string): Promise<void> {
     }
 }
 
-// 👥 Buyer / customer directory
+//  Buyer / customer directory
 export async function getBuyers(): Promise<BuyerUser[]> {
     try {
         const res = await fetch(`${BACKEND_URL}/api/admin/buyers`, { cache: "no-store" });

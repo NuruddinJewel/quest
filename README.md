@@ -42,8 +42,8 @@
 ![Admin Dashboard](./public/images/admin-dashboard.png)
 
 ### 🤖 AI Assistant
-![AI Chatbot](./public/images/chatbot.png)
-![AI Assistant Chat](./public/images/ai-chat.png)
+| ![AI Chatbot](./public/images/chatbot.png) | ![AI Assistant Chat](./public/images/ai-chat.png) |
+| ------------------------------------------ | ------------------------------------------------- |
 
 ---
 

@@ -40,10 +40,10 @@ export default function Footer() {
                 <div>
                     <h3 className="text-ivory font-bold uppercase tracking-wider text-xs mb-4 border-l-2 border-cyan pl-2">Quick Navigation</h3>
                     <ul className="space-y-2.5">
-                        <li><Link href="/shop" className="hover:text-cyan transition-colors">Browse Shop</Link></li>
-                        <li><Link href="/categories" className="hover:text-cyan transition-colors">Categories</Link></li>
-                        <li><Link href="/about" className="hover:text-cyan transition-colors">About Us</Link></li>
-                        <li><Link href="/contact" className="hover:text-cyan transition-colors">Contact Support</Link></li>
+                        <li><Link href="/" className="hover:text-cyan transition-colors">Browse Shop</Link></li>
+                        <li><Link href="/catalog" className="hover:text-cyan transition-colors">Categories</Link></li>
+                        <li><Link href="#" className="hover:text-cyan transition-colors">About Us</Link></li>
+                        <li><Link href="#" className="hover:text-cyan transition-colors">Contact Support</Link></li>
                     </ul>
                 </div>
 
@@ -51,10 +51,10 @@ export default function Footer() {
                 <div>
                     <h3 className="text-ivory font-bold uppercase tracking-wider text-xs mb-4 border-l-2 border-crimson pl-2">Support</h3>
                     <ul className="space-y-2.5">
-                        <li><Link href="/faq" className="hover:text-crimson transition-colors">FAQs</Link></li>
-                        <li><Link href="/privacy-policy" className="hover:text-crimson transition-colors">Privacy Policy</Link></li>
-                        <li><Link href="/terms" className="hover:text-crimson transition-colors">Terms of Service</Link></li>
-                        <li><Link href="/returns" className="hover:text-crimson transition-colors">Return & Refund Policy</Link></li>
+                        <li><Link href="#" className="hover:text-crimson transition-colors">FAQs</Link></li>
+                        <li><Link href="#" className="hover:text-crimson transition-colors">Privacy Policy</Link></li>
+                        <li><Link href="#" className="hover:text-crimson transition-colors">Terms of Service</Link></li>
+                        <li><Link href="#" className="hover:text-crimson transition-colors">Return & Refund Policy</Link></li>
                     </ul>
                 </div>
 
